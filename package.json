@@ -1,0 +1,66 @@
+{
+  "name": "aamt-lestramk",
+  "version": "1.0.0",
+  "description": "Official CLI client for AAMT — access your account, manage resumes, jobs, and more from the terminal",
+  "keywords": [
+    "aamt",
+    "lestramk",
+    "cli",
+    "jobs",
+    "hiring",
+    "talent",
+    "africa",
+    "recruitment",
+    "resume",
+    "career"
+  ],
+  "author": "Lee Muriithi Kingori <leekingori54@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/lee-muriithi-kingori/aamt-lestramk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lee-muriithi-kingori/aamt-lestramk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lee-muriithi-kingori/aamt-lestramk/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "aamt": "./bin/aamt.js",
+    "lestramk": "./bin/aamt.js"
+  },
+  "files": [
+    "dist/",
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "lint": "tsc --noEmit",
+    "test": "node --test dist/**/*.test.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "chalk": "^5.3.0",
+    "ora": "^8.1.0",
+    "inquirer": "^12.0.0",
+    "cli-table3": "^0.6.5",
+    "yaml": "^2.5.0",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0",
+    "mime-types": "^2.1.35",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/mime-types": "^2.1.4",
+    "typescript": "^5.6.0"
+  }
+}
