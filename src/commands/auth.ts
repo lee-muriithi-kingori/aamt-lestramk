@@ -2,7 +2,8 @@ import { Command } from "commander";
 import open from "open";
 import { loginInteractive, logout, getAuthStatus, refreshAuth, hasScope } from "../lib/auth.js";
 import { getApiHost, setConfig } from "../lib/config.js";
-import { c, success, error, info, header, promptInput, withSpinner, confirm } from "../lib/ui.js";
+import { c, success, error, info, header, promptInput, promptSelect, withSpinner, confirm } from "../lib/ui.js";
+import { API_SCOPES } from "../types.js";
 
 export const authCmd = new Command("auth").description("Authenticate with AAMT");
 
@@ -118,12 +119,11 @@ authCmd
 
     console.log(`  Status:     ${c.success("Authenticated")}`);
     console.log(`  User:       ${c.bold(status.creds!.name || "—")}`);
-    console.log(`  Email:      ${status.creds!.email || "—"}`);
+    console.log(`  Email:      ${status.creds!.email || "—")}`);
     console.log(`  Role:       ${c.bold(status.creds!.role || "—")}`);
     console.log(`  API Key:    ${status.creds!.apiKey}`);
-    console.log(`  Last verified: ${status.creds!.lastVerified || "—"}`);
+    console.log(`  Last verified: ${status.creds!.lastVerified || "—")}`);
 
-    // Verify key is still valid
     const refreshed = await refreshAuth();
     if (!refreshed.success) {
       console.log();
@@ -169,9 +169,8 @@ authCmd
     console.log("When creating an API key in your dashboard, you can choose from:");
     console.log();
 
-    const { API_SCOPES } = await import("../types.js");
     API_SCOPES.forEach(
-      (s: { value: string; description: string }) => {
+      (s) => {
         const active = hasScope(s.value);
         const marker = active ? c.success("✔") : c.muted("○");
         console.log(`  ${marker} ${c.bold(s.value.padEnd(28))} ${s.description}`);
